@@ -16,7 +16,7 @@ public class Catenary : MonoBehaviour
 
 	void Start ()
 	{
-		Regenerate ();
+		//Regenerate ();
 	}
 
 	// Calcula o Cosseno hiperbólic

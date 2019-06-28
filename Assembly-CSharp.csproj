@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Line\Catenary.cs" />
     <Compile Include="Assets\Scripts\Line\Line.cs" />
+    <Compile Include="Assets\Scripts\LineGravity.cs" />
     <Compile Include="Assets\Scripts\LineInRod.cs" />
     <Compile Include="Assets\Scripts\Marker.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
