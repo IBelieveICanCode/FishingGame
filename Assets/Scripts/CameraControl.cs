@@ -14,14 +14,14 @@ public class CameraControl : MonoBehaviour
     public float Xsensitivity;
     [Range(1.0f, 10.0f)]
     public float Ysensitivity;
-    private Camera cam;
+    //private Camera cam;
     private float rotAroundX, rotAroundY;
     private bool camMoved = false;
 
     // Use this for initialization
     void Start()
     {
-        cam = GetComponent<Camera>();
+        //cam = GetComponent<Camera>();
         rotAroundX = transform.eulerAngles.x;
         rotAroundY = transform.eulerAngles.y;
     }
@@ -39,12 +39,14 @@ public class CameraControl : MonoBehaviour
         rotAroundX = Mathf.Clamp(rotAroundX, XMinRotation, XMaxRotation);
         rotAroundY = Mathf.Clamp(rotAroundY, YMinRotation, YMaxRotation);
 
-        CameraRotation();
+        //CameraRotation();
     }
 
+    /*
     private void CameraRotation()
     {
         transform.parent.rotation = Quaternion.Euler(0, rotAroundY, 0); // rotation of parent (player body)
         cam.transform.rotation = Quaternion.Euler(-rotAroundX, rotAroundY, 0); // rotation of Camera
     }
+    */
 }

@@ -20,7 +20,7 @@ public class Marker : MonoBehaviour
             Vector3 point = hit.point;
             transform.position = point;
         }
-        //Debug.DrawRay(directionRay.origin, directionRay.direction * 1000f, Color.red);
+        Debug.DrawRay(directionRay.origin, directionRay.direction * 1000f, Color.red);
     }
 
     public void ChangeColor(Color color)
