@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512b86c7ae63fe04c8c62616568703ff, type: 3}
+  m_Name: New Water Profile
+  m_EditorClassIdentifier: 
+  _Data:
+    _SpectrumType: 1
+    _WindSpeed: 22
+    _TileSize: 180
+    _TileScale: 1
+    _WavesAmplitude: 1
+    _WavesFrequencyScale: 1
+    _HorizontalDisplacementScale: 0.92
+    _PhillipsCutoffFactor: 2000
+    _Gravity: -9.81
+    _Fetch: 100000
+    _Directionality: 0.012
+    _AbsorptionColor: {r: 1, g: 1, b: 1, a: 1}
+    _CustomUnderwaterAbsorptionColor: 0
+    _AbsorptionColorByDepth:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    _AbsorptionColorByDepthFlatGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    _DiffuseColor: {r: 0.1176, g: 0.2196, b: 0.2666, a: 1}
+    _SpecularColor: {r: 0.0353, g: 0.0471, b: 0.0549, a: 1}
+    _DepthColor: {r: 0, g: 0, b: 0, a: 1}
+    _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
+    _Smoothness: 0.292
+    _CustomAmbientSmoothness: 0
+    _AmbientSmoothness: 0.94
+    _IsotropicScatteringIntensity: 1
+    _ForwardScatteringIntensity: 1
+    _SubsurfaceScatteringContrast: 0
+    _SubsurfaceScatteringShoreColor: {r: 4.0052357, g: 4.0052357, b: 4.0052357, a: 1}
+    _RefractionDistortion: 0.55
+    _FresnelBias: 0.02040781
+    _DetailFadeDistance: 4.5
+    _DisplacementNormalsIntensity: 2
+    _PlanarReflectionIntensity: 0.6
+    _PlanarReflectionFlatten: 6
+    _PlanarReflectionVerticalOffset: 0.0015
+    _EdgeBlendFactor: 0.15
+    _DirectionalWrapSss: 0.2
+    _PointWrapSss: 0.5
+    _Density: 998.6
+    _UnderwaterBlurSize: 0.003
+    _UnderwaterLightFadeScale: 0.8
+    _UnderwaterDistortionsIntensity: 0.05
+    _UnderwaterDistortionAnimationSpeed: 0.1
+    _DynamicSmoothnessIntensity: 1
+    _NormalMapAnimation1:
+      _Speed: 1
+      _Deviation: -10
+      _Intensity: 1
+      _Tiling: {x: 1, y: 1}
+    _NormalMapAnimation2:
+      _Speed: -0.55
+      _Deviation: 20
+      _Intensity: 0.74
+      _Tiling: {x: 1.5, y: 1.5}
+    _NormalMap: {fileID: 0}
+    _FoamIntensity: 1
+    _FoamThreshold: 1
+    _FoamFadingFactor: 0.85
+    _FoamShoreIntensity: 1
+    _FoamShoreExtent: 1
+    _FoamNormalScale: 2.2
+    _FoamDiffuseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    _FoamSpecularColor: {r: 1, g: 1, b: 1, a: 0}
+    _SprayThreshold: 1
+    _SpraySkipRatio: 0.9
+    _SpraySize: 1
+    _FoamDiffuseMap: {fileID: 0}
+    _FoamNormalMap: {fileID: 0}
+    _FoamTiling: {x: 5.4, y: 5.4}
+    _Template: {fileID: 11400000}
+    Dirty: 0

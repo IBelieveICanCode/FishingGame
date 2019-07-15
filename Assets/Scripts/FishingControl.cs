@@ -26,7 +26,6 @@ public class FishingControl : MonoBehaviour
             case PlayerState.Idle:
                 CastControl();
                 Controller.Bending.Bending(false);
-                Controller.Camera.SetCamera();
                 LookForPlaceToCast();
                 break;
             case PlayerState.Cast:
@@ -36,7 +35,6 @@ public class FishingControl : MonoBehaviour
             case PlayerState.Wait:
                 Controller.Bobber.BobberInWater();
                 Controller.Marker.ChangeColor(Color.green);
-                Controller.Camera.SetCamera();
                 Waiting();
                 break;
             case PlayerState.Biting:

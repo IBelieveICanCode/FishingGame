@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\BendFishingRod.cs" />
     <Compile Include="Assets\Scripts\BobberPhysic.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Clock.cs" />
+    <Compile Include="Assets\Scripts\DayNightController.cs" />
     <Compile Include="Assets\Scripts\FishingControl.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Line\Catenary.cs" />
@@ -74,9 +76,9 @@
     <Compile Include="Assets\Scripts\LineGravity.cs" />
     <Compile Include="Assets\Scripts\LineInRod.cs" />
     <Compile Include="Assets\Scripts\Marker.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Reel.cs" />
     <Compile Include="Assets\Scripts\River.cs" />
+    <Compile Include="Assets\Scripts\Utility\FPSCounter.cs" />
     <Compile Include="Assets\Ultimate Water System\Samples\Scripts\DemoObjects.cs" />
     <Compile Include="Assets\Ultimate Water System\Samples\Scripts\Description.cs" />
     <Compile Include="Assets\Ultimate Water System\Samples\Scripts\ForceMove.cs" />
