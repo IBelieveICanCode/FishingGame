@@ -26,6 +26,7 @@ public class DayNightController : MonoBehaviour
 
     // A multiplier other scripts can use to speed up and slow down the passing of time.
     public float timeMultiplier = 1f;
+    private float SkyboxBlendFactor = 0.0f;
 
     // Get the initial intensity of the sun so we remember it.
     float sunInitialIntensity;
@@ -38,6 +39,7 @@ public class DayNightController : MonoBehaviour
         colorImage = Color.white;
         sunInitialIntensity = Sun.intensity;
         moonInitialIntensity = Moon.intensity;
+
     }
 
     void Update()
@@ -57,42 +59,46 @@ public class DayNightController : MonoBehaviour
 
     void UpdateSun()
     {
-        Sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
-                     
-        if (currentTimeOfDay >= 0.15f)
+        Sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 0, 0);
+        Moon.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) + 150, 0, 0);
+        if (currentTimeOfDay >= 0.20f)
         {
+            //SkyboxBlendFactor = Mathf.Clamp01(((currentTimeOfDay - 0.20f) * (1 / 0.02f)));
             //StartCoroutine(ChangeColor(colorImage, 3f));
-            intensityMoonMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.15f) * (1 / 0.02f));
+            intensityMoonMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.20f) * (1 / 0.02f));
         }
         
         if (currentTimeOfDay >= 0.23f)
-        {
-            //StartCoroutine(ChangeColor(colorImage, 3f));            
+        {                                           
             intensitySunMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
         }
-        if (currentTimeOfDay > 0.20f && currentTimeOfDay < 0.60f )
-        {            
-            foreach(Image image in Background)
+        if (currentTimeOfDay > 0.23f && currentTimeOfDay < 0.6f )
+        {
+            SkyboxBlendFactor = Mathf.Lerp(1, 0,((currentTimeOfDay - 0.23f) * (1 / 0.05f)));
+            foreach (Image image in Background)
                 StartCoroutine(ChangeColor(image,colorImage, 7f));
         }
         // And fade it out when it sets.
-        else if (currentTimeOfDay > 0.77f)
+        else if (currentTimeOfDay > 0.72f)
         {
-            foreach (Image image in Background)
-                StartCoroutine(ChangeColor(image,wantedColor, 5f));
+            //SkyboxBlendFactor = Mathf.Clamp01((currentTimeOfDay - 0.75f) * (1 / 0.02f));
+            SkyboxBlendFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.72f) * (1 / 0.05f));
+            //foreach (Image image in Background)
+                //StartCoroutine(ChangeColor(image,wantedColor, 6f));
+        }
+        if (currentTimeOfDay >= 0.75f)
+        {
+            intensitySunMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.75f) * (1 / 0.02f)));
         }
         if (currentTimeOfDay >= 0.80f)
         {
-            intensitySunMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.8f) * (1 / 0.02f)));
-        }
-        if (currentTimeOfDay >= 0.82f)
-        {
-            intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.82f) * (1 / 0.2f));
+            intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.80f) * (1 / 0.05f));
         }
 
         // Multiply the intensity of the sun according to the time of day.
         Sun.intensity = sunInitialIntensity * intensitySunMultiplier;
         Moon.intensity = intensityMoonMultiplier;
+        RenderSettings.skybox.SetFloat("_Blend", SkyboxBlendFactor);
     }
     /*
     private void ChangeColor(Color To)

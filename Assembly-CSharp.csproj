@@ -288,6 +288,7 @@
     <None Include="Assets\Ultimate Water System\Shaders\IMEs\MarineSnow.shader" />
     <None Include="Assets\Ultimate Water System\Shaders\Wettable\WetUtil (Near Camera).shader" />
     <None Include="Assets\Ultimate Water System\Shaders\Utility\Blur (Max).shader" />
+    <None Include="Assets\SkyboxBlended.shader" />
     <None Include="Assets\Ultimate Water System\Shaders\Spectrum\SpectrumAnimation.shader" />
     <None Include="Assets\Ultimate Water System\Shaders\Includes\UnityDeprecated.cginc" />
     <None Include="Assets\Ultimate Water System\Shaders\Local\Mapper.shader" />
