@@ -13,11 +13,11 @@ public class DayNightController : MonoBehaviour
     public Light Moon;
 
     public List<Image> Background;
-    public Color dayColor,
-        darkColor,
-        dimmColor,
-        setColor,
-        nightColor;
+    //public Color dayColor,
+    //    darkColor,
+    //    dimmColor,
+    //    setColor,
+    //    nightColor;
     // The number of real-world seconds in one full game day.
     // Set this to 86400 for a 24-hour realtime day.
     public float secondsInFullDay = 120f;
@@ -55,25 +55,29 @@ public class DayNightController : MonoBehaviour
     void Update()
     {
         // Updates the sun's rotation and intensity according to the current time of day.
-        UpdateSun();
+        //UpdateSun();
         currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;
         // If currentTimeOfDay is 1 (midnight) set it to 0 again so we start a new day.
         if (currentTimeOfDay >= 1)
         {
             currentTimeOfDay = 0;
         }
-        //ChangeTimeDay();
+        DayCycle();
     }
 
-    void ChangeTimeDay()
+    void DayCycle()
     {
         Sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 0, 0);
         
         Sun.intensity = sunInitialIntensity * intensitySunMultiplier;
         Moon.intensity = intensityMoonMultiplier;
-        
-        ControlLight();
-        if (currentTimeOfDay >= 0.18f && sunTime == SunTime.Night)
+        ChangeTime();
+        ControlLight();                
+    }
+
+    private void ChangeTime()
+    {
+        if (currentTimeOfDay >= 0.13f && sunTime == SunTime.Night)
         {
             SunTimeUpdate(SunTime.Rise);
         }
@@ -81,7 +85,7 @@ public class DayNightController : MonoBehaviour
         {
             SunTimeUpdate(SunTime.EarlyDay);
         }
-        if (currentTimeOfDay > 0.55f  && currentTimeOfDay < 0.7f)//&& sunTime == SunTime.EarlyDay)
+        if (currentTimeOfDay > 0.55f && sunTime == SunTime.EarlyDay)
         {
             SunTimeUpdate(SunTime.LateDay);
         }
@@ -89,7 +93,7 @@ public class DayNightController : MonoBehaviour
         {
             SunTimeUpdate(SunTime.Set);
         }
-        if (currentTimeOfDay >= 0.85f && sunTime == SunTime.Set)
+        if (currentTimeOfDay >= 0.78f && sunTime == SunTime.Set)
         {
             SunTimeUpdate(SunTime.Night);
         }
@@ -101,34 +105,40 @@ public class DayNightController : MonoBehaviour
         {
             case (SunTime.Rise):
                 {
-                    intensityMoonMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.20f) * (1 / 0.02f));
+                    intensityMoonMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.13f) * (1 / 0.02f));
+                    SkyboxBlendMorningFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.13f) * (1 / 0.024f));
+                    if (SkyboxBlendMorningFactor == 1)
+                        RenderSettings.skybox.SetFloat("_BlendNight", 0);
+                    RenderSettings.skybox.SetFloat("_BlendMorning", SkyboxBlendMorningFactor);
                     break;
                 }
             case (SunTime.EarlyDay):
                 {
                     intensitySunMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+                    SkyboxBlendMorningFactor = Mathf.Lerp(1, 0, (currentTimeOfDay - 0.23f) * (1 / 0.024f));
+                    RenderSettings.skybox.SetFloat("_BlendMorning", SkyboxBlendMorningFactor);
                     //SkyboxBlendFactor = Mathf.Lerp(1, 0, ((currentTimeOfDay - 0.23f) * (1 / 0.05f)));
-                    foreach (Image image in Background)
-                        StartCoroutine(ChangeColor(image, dayColor, 7f));
                     break;
                 }
             case (SunTime.LateDay):
                 {
-                    foreach (Image image in Background)
-                        StartCoroutine(ChangeColor(image, dimmColor, 3f));
                     break;
                 }
             case (SunTime.Set):
                 {
-                    intensitySunMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.75f) * (1 / 0.02f)));
+                    intensitySunMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.72f) * (1 / 0.02f)));
+                    SkyboxBlendSetFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.72f) * (1 / 0.02f));
+                    RenderSettings.skybox.SetFloat("_BlendSet", SkyboxBlendSetFactor);
                     //SkyboxBlendFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.72f) * (1 / 0.05f));
-                    foreach (Image image in Background)
-                        StartCoroutine(ChangeColor(image, darkColor, 7f));
                     break;
                 }
             case (SunTime.Night):
                 {
-                    intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.80f) * (1 / 0.05f));
+                    intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.78f) * (1 / 0.05f));
+                    SkyboxBlendNightFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.78f) * (1 / 0.024f));
+                    if (SkyboxBlendNightFactor == 1)
+                        RenderSettings.skybox.SetFloat("_BlendSet", 0);
+                    RenderSettings.skybox.SetFloat("_BlendNight", SkyboxBlendNightFactor);
                     break;
                 }
         }
@@ -145,14 +155,12 @@ public class DayNightController : MonoBehaviour
         //Moon.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) + 150, 0, 0);
         if (currentTimeOfDay >= 0.13f && currentTimeOfDay < 0.20f)
         {
-            Sun.cullingMask = ~ 0;
+            //Sun.cullingMask = ~ 0;
             intensityMoonMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.13f) * (1 / 0.02f));
             SkyboxBlendMorningFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.13f) * (1 / 0.024f));
             if (SkyboxBlendMorningFactor == 1)
                 RenderSettings.skybox.SetFloat("_BlendNight", 0);
             RenderSettings.skybox.SetFloat("_BlendMorning", SkyboxBlendMorningFactor);
-            foreach (Image image in Background)
-                StartCoroutine(ChangeColor(image, setColor, 2f));
         }
 
         if (currentTimeOfDay >= 0.23f)
@@ -163,13 +171,6 @@ public class DayNightController : MonoBehaviour
         {
             SkyboxBlendMorningFactor = Mathf.Lerp(1, 0, (currentTimeOfDay - 0.23f) * (1 / 0.024f));
             RenderSettings.skybox.SetFloat("_BlendMorning", SkyboxBlendMorningFactor);
-            foreach (Image image in Background)
-                StartCoroutine(ChangeColor(image, dayColor, 4f));
-        }
-        else if (currentTimeOfDay > 0.35f && currentTimeOfDay < 0.6f)
-        {
-            foreach (Image image in Background)
-                StartCoroutine(ChangeColor(image, dimmColor, 4f));
         }
         //else if (currentTimeOfDay > 0.6f && currentTimeOfDay < 0.7f)
         //{
@@ -178,18 +179,15 @@ public class DayNightController : MonoBehaviour
         //}
         else if (currentTimeOfDay > 0.72f && currentTimeOfDay < 0.74f)
         {
-            foreach (Image image in Background)
-                StartCoroutine(ChangeColor(image, setColor, 3f));
             SkyboxBlendSetFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.72f) * (1 / 0.02f));
             RenderSettings.skybox.SetFloat("_BlendSet", SkyboxBlendSetFactor);
-            Sun.cullingMask = ~(1 << LayerMask.NameToLayer("Tree"));
+            
         }
 
         if (currentTimeOfDay >= 0.76f)
         {
             intensitySunMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.76f) * (1 / 0.02f)));
-            foreach (Image image in Background)
-                StartCoroutine(ChangeColor(image, nightColor, 3f));
+            
         }
         if (currentTimeOfDay >= 0.76f)
         {
@@ -197,13 +195,15 @@ public class DayNightController : MonoBehaviour
             if (SkyboxBlendNightFactor == 1)
                 RenderSettings.skybox.SetFloat("_BlendSet", 0);
             RenderSettings.skybox.SetFloat("_BlendNight", SkyboxBlendNightFactor);           
-            intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.76f) * (1 / 0.02f));
+            //intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.76f) * (1 / 0.02f));
         }
-
+        if (currentTimeOfDay >= 0.78f)
+        {
+            intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.78f) * (1 / 0.02f));
+        }
         Sun.intensity = sunInitialIntensity * intensitySunMultiplier;
-        Moon.intensity = intensityMoonMultiplier;
-       
-    }
+        Moon.intensity = intensityMoonMultiplier;       
+    }    // clumsy version
     
     IEnumerator ChangeColor(Image image, Color to, float time)
     {
