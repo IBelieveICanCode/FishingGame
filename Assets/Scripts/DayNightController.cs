@@ -67,7 +67,7 @@ public class DayNightController : MonoBehaviour
 
     void DayCycle()
     {
-        Sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 0, 0);
+        Sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * -360f) - 90, 0, 0);
         
         Sun.intensity = sunInitialIntensity * intensitySunMultiplier;
         Moon.intensity = intensityMoonMultiplier;
@@ -104,7 +104,7 @@ public class DayNightController : MonoBehaviour
         switch (sunTime)
         {
             case (SunTime.Rise):
-                {
+                {                   
                     intensityMoonMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.13f) * (1 / 0.02f));
                     SkyboxBlendMorningFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.13f) * (1 / 0.024f));
                     if (SkyboxBlendMorningFactor == 1)
@@ -134,9 +134,11 @@ public class DayNightController : MonoBehaviour
                 }
             case (SunTime.Night):
                 {
-                    intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.78f) * (1 / 0.05f));
-                    SkyboxBlendNightFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.78f) * (1 / 0.024f));
-                    if (SkyboxBlendNightFactor == 1)
+                    if(intensityMoonMultiplier != 1)
+                        intensityMoonMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.78f) * (1 / 0.05f));
+                    if (SkyboxBlendNightFactor != 1)                                            
+                        SkyboxBlendNightFactor = Mathf.Lerp(0, 1, (currentTimeOfDay - 0.78f) * (1 / 0.024f));                                            
+                    else //(SkyboxBlendNightFactor == 1)
                         RenderSettings.skybox.SetFloat("_BlendSet", 0);
                     RenderSettings.skybox.SetFloat("_BlendNight", SkyboxBlendNightFactor);
                     break;
