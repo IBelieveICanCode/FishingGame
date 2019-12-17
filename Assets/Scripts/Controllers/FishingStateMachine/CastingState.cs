@@ -8,7 +8,7 @@ public class CastingState : State<FishingControl>
     public override void EnterState(FishingControl _owner)
     {
         Debug.Log("CastingState");
-        _owner.castAnimation.SetBool("casting", true);        
+        _owner.castAnimationComponent.SetBool("casting", true);        
         _owner.Reel.OpenDugka();
     }
 
@@ -19,7 +19,7 @@ public class CastingState : State<FishingControl>
     public override void UpdateState(FishingControl _owner)
     {
         
-        if (_owner.castAnimation.GetCurrentAnimatorStateInfo(0).IsName("CastingAnimationEnd"))
+        if (_owner.castAnimationComponent.GetCurrentAnimatorStateInfo(0).IsName("CastingAnimationEnd"))
         {            
             _owner.Bobber.CastBobber(30f);
             Vector3 target = _owner.Marker.transform.position - _owner.Bobber.transform.position;

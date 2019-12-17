@@ -1,0 +1,155 @@
+fileFormatVersion: 2
+guid: b4d69f26cea3d5641bea57ae10240eff
+timeCreated: 1481785495
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: blanc_end
+    100002: grip_end
+    100004: spin_10068_SPF78XH_joint_0
+    100006: spin_10068_SPF78XH_joint_1
+    100008: spin_10068_SPF78XH_joint_10
+    100010: spin_10068_SPF78XH_joint_11_RING_001
+    100012: spin_10068_SPF78XH_joint_12
+    100014: spin_10068_SPF78XH_joint_13
+    100016: spin_10068_SPF78XH_joint_14
+    100018: spin_10068_SPF78XH_joint_15
+    100020: spin_10068_SPF78XH_joint_16_RING_002
+    100022: spin_10068_SPF78XH_joint_17
+    100024: spin_10068_SPF78XH_joint_18
+    100026: spin_10068_SPF78XH_joint_19
+    100028: spin_10068_SPF78XH_joint_2
+    100030: spin_10068_SPF78XH_joint_20_RING_003
+    100032: spin_10068_SPF78XH_joint_21
+    100034: spin_10068_SPF78XH_joint_22
+    100036: spin_10068_SPF78XH_joint_23
+    100038: spin_10068_SPF78XH_joint_24_RING_004
+    100040: spin_10068_SPF78XH_joint_25
+    100042: spin_10068_SPF78XH_joint_26
+    100044: spin_10068_SPF78XH_joint_27_RING_005
+    100046: spin_10068_SPF78XH_joint_28
+    100048: spin_10068_SPF78XH_joint_29_RING_end
+    100050: spin_10068_SPF78XH_joint_3
+    100052: spin_10068_SPF78XH_joint_4
+    100054: spin_10068_SPF78XH_joint_5
+    100056: spin_10068_SPF78XH_joint_6_RING_000
+    100058: spin_10068_SPF78XH_joint_7
+    100060: spin_10068_SPF78XH_joint_8
+    100062: spin_10068_SPF78XH_joint_9
+    100064: spin_10068_SPF78XH_joint_root
+    100066: spin_10068_SPF78XH_l_hand_connector
+    100068: spin_10068_SPF78XH_mesh
+    100070: spin_10068_SPF78XH_r_hand_connector
+    100072: spin_10068_SPF78XH_reel_connector
+    100074: //RootNode
+    400000: blanc_end
+    400002: grip_end
+    400004: spin_10068_SPF78XH_joint_0
+    400006: spin_10068_SPF78XH_joint_1
+    400008: spin_10068_SPF78XH_joint_10
+    400010: spin_10068_SPF78XH_joint_11_RING_001
+    400012: spin_10068_SPF78XH_joint_12
+    400014: spin_10068_SPF78XH_joint_13
+    400016: spin_10068_SPF78XH_joint_14
+    400018: spin_10068_SPF78XH_joint_15
+    400020: spin_10068_SPF78XH_joint_16_RING_002
+    400022: spin_10068_SPF78XH_joint_17
+    400024: spin_10068_SPF78XH_joint_18
+    400026: spin_10068_SPF78XH_joint_19
+    400028: spin_10068_SPF78XH_joint_2
+    400030: spin_10068_SPF78XH_joint_20_RING_003
+    400032: spin_10068_SPF78XH_joint_21
+    400034: spin_10068_SPF78XH_joint_22
+    400036: spin_10068_SPF78XH_joint_23
+    400038: spin_10068_SPF78XH_joint_24_RING_004
+    400040: spin_10068_SPF78XH_joint_25
+    400042: spin_10068_SPF78XH_joint_26
+    400044: spin_10068_SPF78XH_joint_27_RING_005
+    400046: spin_10068_SPF78XH_joint_28
+    400048: spin_10068_SPF78XH_joint_29_RING_end
+    400050: spin_10068_SPF78XH_joint_3
+    400052: spin_10068_SPF78XH_joint_4
+    400054: spin_10068_SPF78XH_joint_5
+    400056: spin_10068_SPF78XH_joint_6_RING_000
+    400058: spin_10068_SPF78XH_joint_7
+    400060: spin_10068_SPF78XH_joint_8
+    400062: spin_10068_SPF78XH_joint_9
+    400064: spin_10068_SPF78XH_joint_root
+    400066: spin_10068_SPF78XH_l_hand_connector
+    400068: spin_10068_SPF78XH_mesh
+    400070: spin_10068_SPF78XH_r_hand_connector
+    400072: spin_10068_SPF78XH_reel_connector
+    400074: //RootNode
+    4300000: spin_10068_SPF78XH_mesh
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: spin_10068_SPF78XH_mesh
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

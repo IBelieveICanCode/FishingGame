@@ -22,7 +22,7 @@ public class CatchingState : State<FishingControl>
         _owner.Reel.LineEndurance = 60f;
         _owner.Marker.gameObject.SetActive(true);
         _owner.Reel.StopAnimations();
-        _owner.castAnimation.SetBool("casting", false);
+        _owner.castAnimationComponent.SetBool("casting", false);
         _owner.Bobber.ThrowingRodInWater = false;
         _owner.Marker.ChangeColor(Color.blue);
     }

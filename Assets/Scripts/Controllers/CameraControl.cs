@@ -37,16 +37,16 @@ public class CameraControl : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))//Input.mousePosition.x > theScreenWidth - Boundary)
         {
             startCamPos.x += speed * Time.deltaTime;
-            FishingControl.Instance.castAnimation.SetBool("moving", true);
+            FishingControl.Instance.castAnimationComponent.SetBool("moving", true);
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))//Input.mousePosition.x < 0 + Boundary)
         {
             startCamPos.x -= speed * Time.deltaTime;
-            FishingControl.Instance.castAnimation.SetBool("moving", true);
+            FishingControl.Instance.castAnimationComponent.SetBool("moving", true);
         }
         else
-            FishingControl.Instance.castAnimation.SetBool("moving", false);
+            FishingControl.Instance.castAnimationComponent.SetBool("moving", false);
 
         transform.position = new Vector3(startCamPos.x, transform.position.y, transform.position.z);
         transform.position = new Vector3(

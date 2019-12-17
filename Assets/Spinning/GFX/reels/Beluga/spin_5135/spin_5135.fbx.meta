@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 1ab0930b40a75e544b34794a40db9919
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: chelnok
+    100002: dugka
+    100004: dugka_helper_down
+    100006: dugka_helper_up
+    100008: ik_locator_handle
+    100010: inner_root
+    100012: leska
+    100014: leska_mesh
+    100016: line_connector
+    100018: line_intersect
+    100020: line_intersect_helper
+    100022: reel_root_compensator
+    100024: reel_root_connector
+    100026: rukoyat
+    100028: rukoyat_end
+    100030: shpindel
+    100032: shpulya
+    100034: //RootNode
+    100036: spin_5135_body_mesh
+    100038: spin_5135_dugka_mesh
+    100040: spin_5135_friktion_shpylia_mesh
+    100042: spin_5135_handle_mesh
+    100044: spin_5135_knob_mesh
+    100046: spin_5135_knob_nail_01_mesh
+    100048: spin_5135_rotor_mesh
+    100050: spin_5135_spool_mesh
+    400000: chelnok
+    400002: dugka
+    400004: dugka_helper_down
+    400006: dugka_helper_up
+    400008: ik_locator_handle
+    400010: inner_root
+    400012: leska
+    400014: leska_mesh
+    400016: line_connector
+    400018: line_intersect
+    400020: line_intersect_helper
+    400022: reel_root_compensator
+    400024: reel_root_connector
+    400026: rukoyat
+    400028: rukoyat_end
+    400030: shpindel
+    400032: shpulya
+    400034: //RootNode
+    400036: spin_5135_body_mesh
+    400038: spin_5135_dugka_mesh
+    400040: spin_5135_friktion_shpylia_mesh
+    400042: spin_5135_handle_mesh
+    400044: spin_5135_knob_mesh
+    400046: spin_5135_knob_nail_01_mesh
+    400048: spin_5135_rotor_mesh
+    400050: spin_5135_spool_mesh
+    2100000: spin_5135_mat
+    2100002: reel_parts
+    2100004: leska_mat
+    2300000: leska_mesh
+    2300002: spin_5135_body_mesh
+    2300004: spin_5135_dugka_mesh
+    2300006: spin_5135_friktion_shpylia_mesh
+    2300008: spin_5135_handle_mesh
+    2300010: spin_5135_knob_mesh
+    2300012: spin_5135_knob_nail_01_mesh
+    2300014: spin_5135_rotor_mesh
+    2300016: spin_5135_spool_mesh
+    3300000: leska_mesh
+    3300002: spin_5135_body_mesh
+    3300004: spin_5135_dugka_mesh
+    3300006: spin_5135_friktion_shpylia_mesh
+    3300008: spin_5135_handle_mesh
+    3300010: spin_5135_knob_mesh
+    3300012: spin_5135_knob_nail_01_mesh
+    3300014: spin_5135_rotor_mesh
+    3300016: spin_5135_spool_mesh
+    4300000: spin_5135_dugka_mesh
+    4300002: spin_5135_rotor_mesh
+    4300004: leska_mesh
+    4300006: spin_5135_spool_mesh
+    4300008: spin_5135_friktion_shpylia_mesh
+    4300010: spin_5135_knob_mesh
+    4300012: spin_5135_handle_mesh
+    4300014: spin_5135_knob_nail_01_mesh
+    4300016: spin_5135_body_mesh
+    9500000: //RootNode
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leska_mat
+    second: {fileID: 2100000, guid: 837045ddfacf6b14a92a58d8e9646887, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: reel_parts
+    second: {fileID: 2100000, guid: 13d0f4bff11aea74fab26da8d9c70844, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: spin_5135_mat
+    second: {fileID: 2100000, guid: d51cd725882da3c4ca76c8fc7a1b7d7e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

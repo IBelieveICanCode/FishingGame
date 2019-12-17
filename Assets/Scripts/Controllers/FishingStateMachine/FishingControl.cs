@@ -27,7 +27,7 @@ public class FishingControl : Singleton<FishingControl>
     [HideInInspector]
     public Reel Reel;
 
-    public Animator castAnimation;
+    public Animator castAnimationComponent;
 
     public CatchFishControl CatchControl;
     [HideInInspector]
@@ -39,10 +39,9 @@ public class FishingControl : Singleton<FishingControl>
 
     void Start()
     {
-        //castAnimation = Spinning.gameObject.GetComponent<Animator>();
         stateMachine = new StateMachine<FishingControl>(this);
         stateMachine.ChangeState(new IdleState());
-        castAnimation.runtimeAnimatorController = FishingRod.castAnimation;
+        castAnimationComponent.runtimeAnimatorController = FishingRod.castAnimation;
         Bobber = Instantiate(FishingRod.Bobber, BobberStartPosition.position, Quaternion.identity);
         
         Rod = Instantiate(FishingRod.Spinning, SpinStartPosition.position, Quaternion.identity);
@@ -62,34 +61,5 @@ public class FishingControl : Singleton<FishingControl>
     {
         stateMachine.Update();
     }
-
-    //private void Update()
-    //{
-    //    switch (State)
-    //    {
-    //        case PlayerState.Idle:
-    //            CastControl();
-                //Bending.Bending(false);
-    //            LookForPlaceToCast();
-    //            break;
-    //        case PlayerState.Cast:
-    //            timeForBite = UnityEngine.Random.Range(2f, 5f);
-    //            Casting();
-    //            break;
-    //        case PlayerState.Wait:
-    //            //Controller.Bobber.BobberInWater();
-    //            //Controller.Marker.ChangeColor(Color.green);
-    //            Waiting();
-    //            break;
-    //        case PlayerState.Biting:
-    //            Controller.Bobber.BobberInWater();
-    //            Controller.Marker.ChangeColor(Color.red);
-    //            GameController.Instance.Bobber.CatchingFish();
-    //            break;
-    //        case PlayerState.Catching:
-    //            Catching();
-    //            break;
-    //    }
-    //}
 
 }
