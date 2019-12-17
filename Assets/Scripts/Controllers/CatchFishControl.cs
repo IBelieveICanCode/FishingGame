@@ -7,8 +7,8 @@ public class CatchFishControl : MonoBehaviour
     public List<Fish> AvailableFishes;
 
     public float
-        MinBite,
-        MaxBite;
+        MinBiteTime,
+        MaxBiteTime;
 
     public Fish ChooseFish()
     {
@@ -17,6 +17,6 @@ public class CatchFishControl : MonoBehaviour
 
     public float ChooseTimeForBite()
     {
-        return Random.Range(MinBite, MaxBite);
+        return Random.Range(MinBiteTime, MaxBiteTime);
     }
 }
