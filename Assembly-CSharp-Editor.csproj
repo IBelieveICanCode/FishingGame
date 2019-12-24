@@ -66,6 +66,34 @@
     <Compile Include="Assets\Conifers [BOTD]\CTI Runtime Components\Scripts\Editor\CTI_DetailsEnum.cs" />
     <Compile Include="Assets\Conifers [BOTD]\CTI Runtime Components\Scripts\Editor\CTI_ShaderGUI.cs" />
     <Compile Include="Assets\Scripts\Editor\EditorFishing.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Samples\Scripts\Editor\DescriptionEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\EditorShaderCollectionBuilder.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\EditorUtilities.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\LightWaterEffectsEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\ListDrawer.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\ResolutionPropertyDrawer.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\ShaderCollectionEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\StaticWaterInteractionEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\UnderwaterIMEEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterAreaEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterCameraEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterDropsIMEEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterEditorBase.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterPhysicsEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterProfileBlendEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterProfileEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterProjectSettingsEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterQualitySettingsEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterRipplesProfileDrawer.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterSprayEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterVolumeBaseEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WaterVolumeProbeEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WavesEmitterEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Editor\WavesParticleSystemEditor.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Utilities\Editor\InspectorWarningAttributeDrawer.cs" />
+    <Compile Include="Assets\Ultimate Water System\Ultimate Water System\Scripts\Utilities\Editor\MinMaxRangeDrawer.cs" />
+    <None Include="Assets\Ultimate Water System\Ultimate Water System\Shaders\Editor\InspectTexture.shader" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/Sergey/RepositoryForMyGames/FishingGame/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -689,10 +717,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{04D66FC7-3E77-FBE8-2883-1695F9E21BCB}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{BBC70B2C-38FD-6731-C7D4-9F48752A090E}</Project>
       <Name>Assembly-CSharp</Name>
