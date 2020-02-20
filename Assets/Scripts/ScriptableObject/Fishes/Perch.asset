@@ -15,4 +15,19 @@ MonoBehaviour:
   FishName: "\u041E\u043A\u0443\u043D\u044C"
   MinFishMass: 0.04
   MaxFishMass: 3.85
-  FishSprite: {fileID: 21300000, guid: 7bc259fe42f189444a9f13b6d3524daf, type: 3}
+  Mass: 2.6931002
+  Koef: 2
+  MaxFishStrength: 6
+  FishSprite: {fileID: 21300000, guid: 34a716ea1dc344a4e81f71be8172a426, type: 3}
+  StrengthModifiers:
+  - MinWeight: 0
+    MaxWeight: 1
+    KoefFish: 1
+  - MinWeight: 1
+    MaxWeight: 1.5
+    KoefFish: 1.6
+  - MinWeight: 1.5
+    MaxWeight: 4
+    KoefFish: 2
+  FishBehaviour: {fileID: 4055362375843873189, guid: 4193f0fd6bf58fe41925288fd2a081cb,
+    type: 3}

@@ -6,6 +6,8 @@ using StateStuff;
 
 public class FishingControl : Singleton<FishingControl>
 {
+    public StateMachine<FishingControl> stateMachine;
+
     [SerializeField]
     private FishingRod FishingRod;
     public CameraControl CameraMovement;
@@ -15,6 +17,7 @@ public class FishingControl : Singleton<FishingControl>
     public Transform ReelStartPosition;
     public Transform SpinStartPosition;
     [Space]
+
     public Marker Marker;
     public LayerMask waterLayer;
 
@@ -27,24 +30,32 @@ public class FishingControl : Singleton<FishingControl>
     [HideInInspector]
     public Reel Reel;
 
-    public Animator castAnimationComponent;
+    public Animator castAnimation;
 
     public CatchFishControl CatchControl;
     [HideInInspector]
-    public Fish bitingFish;
+    public Fish BitingFish;
+    [Space]
+    public float distanceToPullRodTo;
+    public float distanceForBreakingLine;
+    //private Vector3 runningDirection = Vector3.zero;
+    [HideInInspector]
+    public Vector3 RunningDirection = Vector3.zero;
 
-    public StateMachine<FishingControl> stateMachine;
 
-    public Vector3 rodPoint;
-
-    void Start()
+    void Awake()
     {
-        stateMachine = new StateMachine<FishingControl>(this);
+        stateMachine = new StateMachine<FishingControl>(this);        
+        castAnimation.runtimeAnimatorController = FishingRod.castAnimation;
+        CreateRod(FishingRod);       
         stateMachine.ChangeState(new IdleState());
-        castAnimationComponent.runtimeAnimatorController = FishingRod.castAnimation;
-        Bobber = Instantiate(FishingRod.Bobber, BobberStartPosition.position, Quaternion.identity);
-        
-        Rod = Instantiate(FishingRod.Spinning, SpinStartPosition.position, Quaternion.identity);
+    }
+
+    private void CreateRod(FishingRod fishingRod)
+    {
+        Bobber = Instantiate(fishingRod.Bobber, BobberStartPosition.position, Quaternion.identity);
+
+        Rod = Instantiate(fishingRod.Spinning, SpinStartPosition.position, Quaternion.identity);
         Rod.transform.parent = SpinStartPosition;
         Rod.transform.localPosition = Vector3.zero;
         Bending = Rod.GetComponent<BendFishingRod>();
@@ -57,9 +68,21 @@ public class FishingControl : Singleton<FishingControl>
             Reel.transform.localEulerAngles = Vector3.zero;
         }
     }
+
+    public void InitIdleState()
+    {
+        Bobber.CanSeeBobber(true);
+        Marker.gameObject.SetActive(true);
+        Reel.StopAnimations();
+        castAnimation.SetBool("casting", false);
+        Bobber.ThrowingRodInWater = false;
+        Reel.ChangeLine.VizualizeDestroyer(0.5f);
+    }
+
     private void Update()
     {
         stateMachine.Update();
     }
-
 }
+
+

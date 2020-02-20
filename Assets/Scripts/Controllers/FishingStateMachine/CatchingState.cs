@@ -1,79 +1,72 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StateStuff;
+using System.Threading.Tasks;
 
-public class CatchingState : State<FishingControl>
+namespace StateStuff
 {
-    Vector3 runningDirection;
-    Vector3 distanceToRod;
-    public override void EnterState(FishingControl _owner)
-    {
-        Debug.Log("CatchingState");
-        _owner.Marker.ChangeColor(Color.red);
-        _owner.bitingFish = _owner.CatchControl.ChooseFish();
-        _owner.bitingFish.Mass = _owner.bitingFish.CalculateFishMass();
-        runningDirection = new Vector3(Random.Range(-0.5f, 0.5f), 0.0f, Random.Range(0, 0.5f));
+    public class CatchingState : State<FishingControl>
+    {       
+        Vector3 velocityRod;
+        Vector3 velocityFish;
 
-    }
-
-    public override void ExitState(FishingControl _owner)
-    {
-        _owner.Reel.LineEndurance = 60f;
-        _owner.Marker.gameObject.SetActive(true);
-        _owner.Reel.StopAnimations();
-        _owner.castAnimationComponent.SetBool("casting", false);
-        _owner.Bobber.ThrowingRodInWater = false;
-        _owner.Marker.ChangeColor(Color.blue);
-    }
-
-    public override void UpdateState(FishingControl _owner)
-    {
-        distanceToRod = _owner.Rod.whatTheRopeIsConnectedTo.transform.position - _owner.Bobber.transform.position;
-
-        _owner.Rod.RotateSpinning();
-        //FishFight(_owner);
-        _owner.Bending.Bending(true);
-        if (Input.GetKey(KeyCode.Mouse0))
-        {           
-            _owner.Marker.gameObject.SetActive(false);            
-            //Pull(_owner);
-            _owner.StartCoroutine(LineBreaking(_owner));
-            if (_owner.Reel)
-                _owner.Reel.CatchingAnimations();
+        public override void EnterState(FishingControl _owner)
+        {
+            _owner.Marker.ChangeColor(Color.red);
+            _owner.BitingFish = _owner.CatchControl.InitFish();            
+            _owner.Bending.CalculateAnimationCurve(_owner.BitingFish.Mass);  
         }
-        else
+
+        public override void ExitState(FishingControl _owner)
+        {
+            _owner.Reel.ChangeLine.VizualizeDestroyer(0);
+            _owner.Marker.ChangeColor(Color.blue);
             _owner.Reel.StopAnimations();
-
-        if (distanceToRod.magnitude > 25f)
-        {
-            _owner.stateMachine.ChangeState(new BrokenLineState());
+            _owner.castAnimation.SetBool("casting", false);
+            _owner.Bobber.ThrowingRodInWater = false;
         }
-    }
-    public void Pull(FishingControl _owner)
-    {        
-        
-        Vector3 directionXZ = new Vector3(distanceToRod.x, 0, distanceToRod.z);
-        _owner.Bobber.Rigidbody.velocity = (directionXZ.normalized * Time.deltaTime * distanceToRod.magnitude * 10f);
-        if (distanceToRod.magnitude < 7f)
+
+        public override void UpdateState(FishingControl _owner)
         {
-            _owner.stateMachine.ChangeState(new FishCatchedState());
+            _owner.Marker.MarkerMove();
+            _owner.Rod.RotateSpinning();            
+            _owner.Bending.Bending(true);
+            _owner.Reel.LineBreaking();
+
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                velocityFish = _owner.BitingFish.FishBehaviour.ChosenDirection.PossibleDir.normalized * _owner.BitingFish.FishBehaviour.FishFight(_owner.BitingFish);
+                Pull(_owner);                                
+                _owner.CatchControl.WeakenFish(0.2f);
+                _owner.Reel.CatchingAnimations();
+            }
+            else
+            {
+                velocityRod = Vector3.zero;
+                velocityFish = _owner.BitingFish.FishBehaviour.ChosenDirection.PossibleDir.normalized * _owner.BitingFish.FishBehaviour.FishMove(_owner.BitingFish);
+                _owner.CatchControl.WeakenFish(0.1f);
+                _owner.Reel.StopAnimations();
+            }
+
+            _owner.Bobber.Rigidbody.velocity = velocityRod + velocityFish;
+
+
+            if (_owner.Rod.DistanceToBobber.magnitude > _owner.distanceForBreakingLine 
+                || _owner.Reel.LineEndurance <= 0)
+            {
+                _owner.stateMachine.ChangeState(new BrokenLineState());
+            }
         }
-    }
 
-    public void FishFight(FishingControl _owner)
-    {
-        _owner.Bobber.Rigidbody.AddForce(runningDirection.normalized * _owner.bitingFish.Mass * Time.deltaTime * 2f, ForceMode.Impulse); //* _owner.bitingFish.FishStrength;
-    }
-
-    IEnumerator LineBreaking(FishingControl _owner)
-    {
-        _owner.Reel.LineEndurance -= _owner.bitingFish.FishStrength * Time.deltaTime;
-        if (_owner.Reel.LineEndurance <= 0)
+        public void Pull(FishingControl _owner)
         {
-            _owner.stateMachine.ChangeState(new BrokenLineState());
-            yield return null;
-        }           
-        yield return new WaitForSeconds(1f);
+            Vector3 directionXZ = new Vector3(_owner.Rod.DistanceToBobber.x, 0, _owner.Rod.DistanceToBobber.z);
+            velocityRod = directionXZ.normalized * Time.fixedDeltaTime * (_owner.Rod.DistanceToBobber.magnitude * 3.5f);            
+            if (_owner.Rod.DistanceToBobber.magnitude < _owner.distanceToPullRodTo)
+            {
+                _owner.stateMachine.ChangeState(new FishCatchedState());
+            }
+        }
     }
 }

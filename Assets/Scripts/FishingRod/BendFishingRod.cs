@@ -22,12 +22,12 @@ public class BendFishingRod : MonoBehaviour
         target = FishingControl.Instance.Bobber.transform;
     }
 
-    public void Bending(bool cast) //float power)
+    public void Bending(bool cast)
     {
         if (cast)
         {
             if (time < 1)
-                time += Time.deltaTime * 3;
+                time += Time.deltaTime * 3;//FishingControl.Instance.bitingFish.Mass;
             finalizedTIme = inPut.Evaluate(time);
         }
         else
@@ -74,6 +74,12 @@ public class BendFishingRod : MonoBehaviour
 
     }
 
+    public void CalculateAnimationCurve(float mass)
+    {
+        inPut = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, mass / 3f));
+    }
+
+    
     //void OnDrawGizmos()
     //{
     //    Gizmos.color = new Color(1, 0, 0, 0.5f);

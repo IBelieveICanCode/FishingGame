@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80e4955e867b454baec5e556d13c314, type: 3}
+  m_Name: Ide
+  m_EditorClassIdentifier: 
+  FishName: "\u042F\u0437\u044C"
+  MinFishMass: 1.5
+  MaxFishMass: 5
+  Mass: 3.7304976
+  Koef: 1.3
+  MaxFishStrength: 5
+  FishSprite: {fileID: 21300000, guid: 39a6c810b61a7264d9879dbf73320f2d, type: 3}
+  StrengthModifiers:
+  - MinWeight: 0
+    MaxWeight: 3
+    KoefFish: 1
+  - MinWeight: 3
+    MaxWeight: 7
+    KoefFish: 1.3
+  FishBehaviour: {fileID: 4055362375843873189, guid: 4193f0fd6bf58fe41925288fd2a081cb,
+    type: 3}

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Reel : MonoBehaviour
 {
-
+    [SerializeField]
+    public ChangeLineColor ChangeLine;
     public LineRenderer ReelLine;
     public Transform LinePosition;
 
-    public float LineEndurance = 50f;
+    public float MaxLineEndurance;
+    public float LineEndurance;
 
     public Animation AnimationReel;
     AnimationState HandleAnim;
@@ -19,12 +21,12 @@ public class Reel : MonoBehaviour
 
     public float NodeSpeed;
 
-    private void Start()
+    private void Awake()
     {
         FishingControl.Instance.Rod.Rings.myRings.Insert(0, LinePosition);
         FishingControl.Instance.Rod.Rings.myRings.Add(FishingControl.Instance.Bobber.transform);
         ReelLine.positionCount = FishingControl.Instance.Rod.Rings.myRings.Count;
-        ReelLine.material.color = Color.white;
+        ChangeLine = GetComponent<ChangeLineColor>();
 
         HandleAnim = AnimationReel["Handle_Roll"];
         ChelnokAnim = AnimationReel["Chelnok_Stage"];
@@ -35,7 +37,6 @@ public class Reel : MonoBehaviour
 
     void LateUpdate()
     {
-        //ReelWorking(false, Vector3.zero, Vector3.zero);
         Line();
     }
 
@@ -69,10 +70,16 @@ public class Reel : MonoBehaviour
         AnimationReel.Stop();
     }
 
-    public void Line()
+    private void Line()
     {
         for (int i = 0; i < FishingControl.Instance.Rod.Rings.myRings.Count; i++)
             ReelLine.SetPosition(i, FishingControl.Instance.Rod.Rings.myRings[i].position);
+    }
+
+    public void LineBreaking()
+    {
+        LineEndurance -= Time.deltaTime * 2;
+        ChangeLine.VizualizeDestroyer((LineEndurance / 2) / MaxLineEndurance);
     }
 
     //void BezierCurve(LineRenderer Line, Transform point1, Transform point2, Transform point3)

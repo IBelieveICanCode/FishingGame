@@ -1,61 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StateStuff;
 
-public class WaitState : State<FishingControl>
+namespace StateStuff
 {
-    float timer = 0;
-
-    public override void EnterState(FishingControl _owner)
+    public class WaitState : State<FishingControl>
     {
-        _owner.Reel.CloseDugka();
-        Debug.Log("WaitState");
-        _owner.Marker.ChangeColor(Color.green);
-        _owner.Bobber.transform.Translate(Vector3.down * 0.1f);
+        bool timer = true;
+        bool bobberTooClose = false;
 
-    }
-
-    public override void ExitState(FishingControl _owner)
-    {
-
-    }
-
-    public override void UpdateState(FishingControl _owner)
-    {
-        _owner.Bobber.BobberInWater();
-        
-        _owner.Rod.RotateSpinning();
-        if (Input.GetKey(KeyCode.Mouse0))
+        public override void EnterState(FishingControl _owner)
         {
-            _owner.Marker.gameObject.SetActive(false);
-            Pull(_owner);
-            if (_owner.Reel)
-                _owner.Reel.CatchingAnimations();
+            Debug.Log("WaitState");
 
-            timer += Time.deltaTime;
-            if (timer >= _owner.CatchControl.ChooseTimeForBite())
+            bobberTooClose = false;
+            _owner.Bobber.CanSeeBobber(false);
+            _owner.Reel.CloseDugka();            
+            _owner.Marker.ChangeColor(Color.green);
+            _owner.Bobber.BobberInWater();
+            _owner.Bending.CalculateAnimationCurve(0.1f);
+
+        }
+
+        public override void ExitState(FishingControl _owner)
+        {
+            //_owner.Marker.gameObject.SetActive(false);
+        }
+
+        public override void UpdateState(FishingControl _owner)
+        {           
+            _owner.Rod.RotateSpinning();
+            _owner.Marker.MarkerMove();
+            PullRod(_owner);
+            if (bobberTooClose)
+                _owner.stateMachine.ChangeState(new IdleState());
+        }
+
+        private void PullRod(FishingControl _owner)
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                _owner.stateMachine.ChangeState(new CatchingState());
+                _owner.Rod.Pull(ref bobberTooClose, _owner.distanceToPullRodTo);
+                _owner.Bending.Bending(true);
+                _owner.Reel.CatchingAnimations();
+                _owner.StartCoroutine(CheckPossibleFish(_owner));
+            }
+            else
+            {
+                _owner.Bending.Bending(false);
+                _owner.Reel.StopAnimations();
             }
         }
-        else
+
+        IEnumerator CheckPossibleFish(FishingControl _owner)
         {
-            _owner.Reel.StopAnimations();
-            timer = 0f;
+            if (timer)
+            {
+                timer = false;
+                if (Randomizer.CheckProbability(_owner.CatchControl.ChanceToBite))
+                    _owner.stateMachine.ChangeState(new CatchingState());
+                yield return new WaitForSeconds(1f);
+                timer = true;
+            }
         }
     }
-
-    public void Pull(FishingControl _owner)
-    {
-
-        Vector3 direction = _owner.Rod.whatTheRopeIsConnectedTo.transform.position - _owner.Bobber.transform.position;
-        Vector3 directionXZ = new Vector3(direction.x, 0, direction.z);
-        _owner.Bobber.transform.Translate(directionXZ.normalized * Time.deltaTime);
-        if (direction.magnitude < 5f)
-        {
-            _owner.stateMachine.ChangeState(new IdleState());
-        }
-    }
-
 }

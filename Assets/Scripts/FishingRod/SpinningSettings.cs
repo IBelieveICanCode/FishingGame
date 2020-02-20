@@ -19,8 +19,15 @@ public class SpinningSettings : MonoBehaviour
     public GameObject meshSpinning;
     public Transform whatTheRopeIsConnectedTo;
     public Transform ReelPosition;
-    private Transform BobberPosition;
 
+    private Transform bobberTransform;
+
+    public Vector3 DistanceToBobber {
+        get
+        {
+            return whatTheRopeIsConnectedTo.transform.position - bobberTransform.position;
+        }
+    }
 
     public Rings Rings;
 
@@ -29,13 +36,8 @@ public class SpinningSettings : MonoBehaviour
     {
         ScreenHeight = Screen.height;
         ScreenWidth = Screen.width;
-        BobberPosition = FishingControl.Instance.Bobber.transform;
+        bobberTransform = FishingControl.Instance.Bobber.transform;
     }
-    private void FixedUpdate()
-    {
-        //RotateSpinning();
-    }
-
 
     public void RotateSpinning()
     {
@@ -49,6 +51,17 @@ public class SpinningSettings : MonoBehaviour
             Mathf.Lerp(MinYValue, MaxYValue, NormalizedHeight),
             Mathf.Lerp(MinXValue, MaxXValue, NormalizedWidth),
             0);
+    }
 
+    public void Pull(ref bool bobberTooClose, float distanceToPullRodTo)
+    {
+        Vector3 directionXZ = new Vector3(DistanceToBobber.x, 0, DistanceToBobber.z);
+        bobberTransform.Translate(directionXZ.normalized * Time.deltaTime);
+        if (DistanceToBobber.magnitude < distanceToPullRodTo)
+        {
+            bobberTooClose = true;
+        }
+        else
+            bobberTooClose = false;
     }
 }

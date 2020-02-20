@@ -7,18 +7,20 @@ public class Marker : MonoBehaviour
     [SerializeField]
     private LayerMask waterLayer;
     private ParticleSystem markerParticle;
-    private void Awake()
+    private Transform bobberTrans;
+    private void Start()
     {
         markerParticle = GetComponent<ParticleSystem>();
+        bobberTrans = FishingControl.Instance.Bobber.transform;
     }
     public void MarkerMove()
     {
         Ray directionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(directionRay, out hit, Mathf.Infinity, waterLayer))
+        if (Physics.Raycast(directionRay, out hit, Mathf.Infinity))
         {
-            Vector3 point = hit.point;
-            transform.position = point;
+            Vector3 markerPos = new Vector3(bobberTrans.position.x, bobberTrans.position.y /*+ 0.01f*/, bobberTrans.position.z);
+            transform.position = markerPos;
         }
     }
 
